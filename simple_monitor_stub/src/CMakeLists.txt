@@ -23,14 +23,11 @@ add_library(pcn-simplemonitor SHARED
   Simplemonitor-lib.cpp)
 
 # load ebpf datapath code a variable
-load_file_as_variable(pcn-simplemonitor
-  Simplemonitor_dp.c
-  simplemonitor_code)
+load_file_as_variable(pcn-simplemonitor Simplemonitor_dp_ingress.c simplemonitor_code_ingress)
+load_file_as_variable(pcn-simplemonitor Simplemonitor_dp_egress.c simplemonitor_code_egress)
 
 # load datamodel in a variable
-load_file_as_variable(pcn-simplemonitor
-  ../datamodel/simplemonitor.yang
-  simplemonitor_datamodel)
+load_file_as_variable(pcn-simplemonitor ../datamodel/simplemonitor.yang simplemonitor_datamodel)
 
 target_link_libraries(pcn-simplemonitor ${POLYCUBE_LIBRARIES})
 

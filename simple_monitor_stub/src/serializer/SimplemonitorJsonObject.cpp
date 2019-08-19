@@ -106,6 +106,8 @@ std::string SimplemonitorJsonObject::SimplemonitorIngressActionEnum_to_string(co
       return std::string("pass");
     case SimplemonitorIngressActionEnum::SLOWPATH:
       return std::string("slowpath");
+    case SimplemonitorIngressActionEnum::TWO_WAY:
+      return std::string("two_way");
     default:
       throw std::runtime_error("Bad Simplemonitor ingressAction");
   }
@@ -118,6 +120,8 @@ SimplemonitorIngressActionEnum SimplemonitorJsonObject::string_to_SimplemonitorI
     return SimplemonitorIngressActionEnum::PASS;
   if (JsonObjectBase::iequals("slowpath", str))
     return SimplemonitorIngressActionEnum::SLOWPATH;
+  if (JsonObjectBase::iequals("two_way", str))
+    return SimplemonitorIngressActionEnum::TWO_WAY;
   throw std::runtime_error("Simplemonitor ingressAction is invalid");
 }
 SimplemonitorEgressActionEnum SimplemonitorJsonObject::getEgressAction() const {

@@ -26,7 +26,7 @@ namespace service {
 namespace model {
 
 enum class SimplemonitorIngressActionEnum {
-  DROP, PASS, SLOWPATH
+  DROP, PASS, SLOWPATH, TWO_WAY
 };
 enum class SimplemonitorEgressActionEnum {
   DROP, PASS, SLOWPATH

@@ -21,6 +21,7 @@ module simplemonitor {
       enum DROP;
       enum PASS;
       enum SLOWPATH;
+      enum TWO_WAY;
     }
     default PASS;
     description "Action performed on ingress packets";

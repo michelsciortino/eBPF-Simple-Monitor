@@ -5,21 +5,19 @@
 * https://github.com/polycube-network/polycube-codegen
 */
 
-
 #pragma once
-
 
 #include "../base/SimplemonitorBase.h"
 
-
-
 using namespace polycube::service::model;
 
-class Simplemonitor : public SimplemonitorBase {
- public:
+class Simplemonitor : public SimplemonitorBase
+{
+public:
   Simplemonitor(const std::string name, const SimplemonitorJsonObject &conf);
   virtual ~Simplemonitor();
 
+  void attach() override;
   void packet_in(polycube::service::Sense sense,
                  polycube::service::PacketInMetadata &md,
                  const std::vector<uint8_t> &packet) override;
@@ -35,4 +33,37 @@ class Simplemonitor : public SimplemonitorBase {
   /// </summary>
   SimplemonitorEgressActionEnum getEgressAction() override;
   void setEgressAction(const SimplemonitorEgressActionEnum &value) override;
+
+private:
+  inline const char *ingressActionToString(SimplemonitorIngressActionEnum v)
+  {
+    switch (v)
+    {
+    case SimplemonitorIngressActionEnum::PASS:
+      return "PASS";
+    case SimplemonitorIngressActionEnum::DROP:
+      return "DROP";
+    case SimplemonitorIngressActionEnum::SLOWPATH:
+      return "SLOWPATH";
+    case SimplemonitorIngressActionEnum::TWO_WAY:
+      return "TWO_WAY";
+    default:
+      return "[Unknown INGRESS ACTION]";
+    }
+  }
+
+  inline const char *egressActionToString(SimplemonitorEgressActionEnum v)
+  {
+    switch (v)
+    {
+    case SimplemonitorEgressActionEnum::PASS:
+      return "PASS";
+    case SimplemonitorEgressActionEnum::DROP:
+      return "DROP";
+    case SimplemonitorEgressActionEnum::SLOWPATH:
+      return "SLOWPATH";
+    default:
+      return "[Unknown INGRESS ACTION]";
+    }
+  }
 };
